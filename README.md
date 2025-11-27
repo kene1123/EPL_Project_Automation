@@ -1,2 +1,4 @@
 # EPL_Project_Automation
-This script automates pulling of live EPL update to my cloud database
+This aim of the project is to automate pulling of live EPL update;
+To my cloud database
+My on-Prem Database
