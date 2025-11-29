@@ -1,0 +1,7 @@
+2025-11-26 12:13:19,568 — INFO — Automation started
+2025-11-26 12:13:24,466 — ERROR — ERROR — column "goal_against" of relation "standings" does not exist
+LINE 4:                 points, goals_for, goal_against, goal_differ...
+                                           ^
+
+2025-11-26 12:35:18,732 - INFO - Logging system initialized successfully.
+2025-11-26 12:35:18,732 — INFO — Logging system initialized successfully.
