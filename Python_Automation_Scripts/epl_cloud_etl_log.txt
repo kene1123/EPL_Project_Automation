@@ -1,6 +1,0 @@
-2025-11-27 14:43:52,063 — INFO — Cloud ETL logger initialized successfully
-2025-11-27 14:43:52,066 — INFO — Cloud EPL ETL started
-2025-11-27 14:44:03,342 — INFO — Standings updated successfully: 20 teams
-2025-11-27 14:44:06,801 — INFO — Scorers updated successfully: 10 players
-2025-11-27 14:45:19,467 — INFO — Fixtures updated successfully: 380 matches
-2025-11-27 14:45:19,467 — INFO — SUCCESS — Cloud DB updated
