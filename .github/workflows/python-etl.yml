@@ -1,0 +1,29 @@
+name: EPL ETL Automation
+
+on:
+  schedule:
+    - cron: "0 7 * * *"   
+  workflow_dispatch:     
+
+jobs:
+  run-etl:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Install dependencies
+      run: |
+        pip install -r cloud_automation/python/requirements.txt
+
+    - name: Run ETL Script
+      env:
+        NEON_DB_URL: ${{ secrets.NEON_DB_URL }} 
+      run: |
+        python cloud_automation/python/Allclouds_Automate.py
