@@ -26,4 +26,4 @@ jobs:
       env:
         NEON_DB_URL: ${{ secrets.NEON_DB_URL }} 
       run: |
-        python python/Allclouds_Automate.py
+        python cloud_automation/python/Allclouds_Automate.py
