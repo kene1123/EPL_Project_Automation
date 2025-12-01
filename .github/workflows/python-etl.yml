@@ -2,7 +2,7 @@ name: EPL ETL Automation
 
 on:
   schedule:
-    - cron: "0 7 * * *"   
+    - cron: "0 2 * * *"   
   workflow_dispatch:     
 
 jobs:
@@ -26,4 +26,4 @@ jobs:
       env:
         NEON_DB_URL: ${{ secrets.NEON_DB_URL }} 
       run: |
-        python cloud_automation/python/Allclouds_Automate.py
+        python cloud_script/Allclouds_Automate.py
