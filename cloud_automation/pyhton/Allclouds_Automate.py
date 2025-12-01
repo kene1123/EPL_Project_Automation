@@ -3,13 +3,9 @@ import os
 import requests
 import psycopg2
 from datetime import datetime
-import schedule
-import time
 
-# -------------------------
-# LOGGING
-# -------------------------
-log_file_path = os.path.join(os.getcwd(), "epl_cloud_etl_log.txt")
+# LOGGING SETUP (in same folder as script)
+log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "epl_cloud_etl_log.txt")
 
 logger = logging.getLogger("CLOUD_EPL_ETL")
 logger.setLevel(logging.INFO)
@@ -29,18 +25,14 @@ if not logger.handlers:
     logger.addHandler(console_handler)
 
 logger.info("Cloud ETL logger initialized successfully")
-print("Cloud ETL logging initialized.")
+print(f"Cloud ETL logging initialized. Log file: {log_file_path}")
 
-# -------------------------
 # API CONFIG
-# -------------------------
 API_KEY = "7215bf43b5de4fd2a9161700c44d5ee9"
 BASE_URL = "https://api.football-data.org/v4"
 HEADERS = {"X-Auth-Token": API_KEY}
 
-# -------------------------
 # CLOUD DB CONNECTION
-# -------------------------
 def get_cloud_conn():
     return psycopg2.connect(
         host="ep-nameless-river-agukj3qw-pooler.c-2.eu-central-1.aws.neon.tech",
@@ -50,9 +42,7 @@ def get_cloud_conn():
         sslmode="require"
     )
 
-# -------------------------
 # API FETCH FUNCTIONS
-# -------------------------
 def get_standings():
     r = requests.get(f"{BASE_URL}/competitions/PL/standings", headers=HEADERS)
     r.raise_for_status()
@@ -68,9 +58,7 @@ def get_fixtures():
     r.raise_for_status()
     return r.json()["matches"]
 
-# -------------------------
-# LOAD FUNCTIONS (same as your original)
-# -------------------------
+# LOAD FUNCTIONS
 def load_standings(rows):
     sql = """
         INSERT INTO standings (
@@ -185,12 +173,10 @@ def load_fixtures(rows):
     except Exception as e:
         logger.error(f"Fixtures update failed: {e}")
 
-# -------------------------
 # MASTER ETL FUNCTION
-# -------------------------
 def run_etl():
     try:
-        logger.info("Scheduled Cloud ETL started")
+        logger.info("Cloud ETL started")
         standings = get_standings()
         scorers = get_scorers()
         fixtures = get_fixtures()
@@ -203,15 +189,6 @@ def run_etl():
         logger.error(f"ERROR — {str(e)}")
         print("Cloud ETL failed. Check log.")
 
-# -------------------------
-# SCHEDULER
-# -------------------------
-schedule.every().day.at("08:00").do(run_etl)
-schedule.every().day.at("20:00").do(run_etl)
-
-print("Cloud scheduler initialized. Script will run at 08:00 and 20:00 daily.")
-
-# Keep script running
-while True:
-    schedule.run_pending()
-    time.sleep(60)
+# MAIN ENTRY POINT
+if __name__ == "__main__":
+    run_etl() 
