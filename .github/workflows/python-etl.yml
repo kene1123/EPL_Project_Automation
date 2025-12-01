@@ -20,7 +20,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install -r cloud_automation/python/requirements.txt
+        pip install -r cloud_automation/req/requirements.txt
 
     - name: Run ETL Script
       env:
