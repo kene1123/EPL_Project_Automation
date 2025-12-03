@@ -49,7 +49,7 @@ def get_conn():
         dbname="epl"
     )
 
-# --- API FETCH FUNCTIONS ---
+# API FETCH FUNCTIONS 
 def get_standings():
     url = f"{BASE_URL}/competitions/PL/standings"
     response = requests.get(url, headers=HEADERS)
@@ -68,7 +68,7 @@ def get_fixtures():
     data = response.json()
     return data["matches"]
 
-# --- LOAD FUNCTIONS ---
+# LOAD FUNCTIONS
 def load_standings(rows):
     conn = get_conn()
     cur = conn.cursor()
@@ -170,7 +170,7 @@ def load_fixtures(rows):
     cur.close()
     conn.close()
 
-# --- MASTER ETL FUNCTION ---
+# MASTER ETL FUNCTION 
 def run_etl():
     try:
         logger.info("Scheduled ETL started")
@@ -186,7 +186,7 @@ def run_etl():
         logger.error(f"ERROR — {str(e)}")
         print("An error occurred. Check log file.")
 
-# --- SCHEDULER ---
+# SCHEDULER
 schedule.every().day.at("08:00").do(run_etl)
 schedule.every().day.at("20:00").do(run_etl)
 
