@@ -1,10 +1,10 @@
-# ⚽ EPL Data ETL Automation Pipeline
+# EPL Data ETL Automation Pipeline
 
 An end-to-end data engineering project that collects live English Premier League (EPL) data, processes it using Python, stores it in PostgreSQL (on-prem and cloud), automates updates, and visualizes insights in Power BI.
 
 ---
 
-## 🚀 Project Overview
+## Project Overview
 
 This project builds a complete **automated data pipeline** for EPL data including:
 
@@ -16,7 +16,7 @@ The system extracts live data from an external API, transforms it into structure
 
 ---
 
-## 🎯 Objectives
+## Objectives
 
 - Build a real-time data ingestion pipeline for football data  
 - Design and manage both local and cloud PostgreSQL databases  
@@ -26,7 +26,7 @@ The system extracts live data from an external API, transforms it into structure
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - Python  
 - REST API (Football Data Source)  
@@ -37,11 +37,11 @@ The system extracts live data from an external API, transforms it into structure
 
 ---
 
-## 📡 Data Source
+## Data Source
 
 Live EPL data is fetched from:
 
-- :contentReference[oaicite:0]{index=0}  
+- football-data.org
 
 Data endpoints used:
 - Standings  
@@ -50,7 +50,7 @@ Data endpoints used:
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 1. **Data Extraction**
    - API calls made using Python
@@ -74,7 +74,7 @@ Data endpoints used:
 
 ---
 
-## 🗄️ Database Migration
+## Database Migration
 
 Data was migrated from an on-prem PostgreSQL database to a cloud database using `dump.sql`.
 
@@ -88,7 +88,7 @@ Data was migrated from an on-prem PostgreSQL database to a cloud database using 
 
 ---
 
-## 🤖 Automation
+## Automation
 
 ### On-Prem Automation
 - Python script runs scheduled updates locally
@@ -101,7 +101,7 @@ Data was migrated from an on-prem PostgreSQL database to a cloud database using 
 
 ---
 
-## 📊 Reporting
+## Reporting
 
 Power BI is connected directly to the PostgreSQL database.
 
@@ -114,12 +114,9 @@ Data refresh is handled simply by reloading the dashboard.
 
 ---
 
-## 🔐 Security
+## Security
 
 - API keys stored in environment variables  
 - Sensitive credentials excluded from GitHub using `.gitignore`  
 - No hardcoded secrets in source code  
 
----
-
-## 📁 Project Structure
